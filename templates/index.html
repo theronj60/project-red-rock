@@ -3,14 +3,22 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<title></title>
+		<title>Color Extractor</title>
+		<link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 	</head>
 	<body>
-		<h1>Flask App</h1>	
-		<div>
-			<p>HelloWorld!</p>
-			<p>Does it change?</p>
-			<p>quick fix</p>
+		<h1 class="flex h-14 text-xl items-center justify-center text-white bg-gray-800">
+			Extract your colors
+		</h1>
+		<div class="flex flex-col min-h-screen justify-center items-center">
+			<div class="border border-black shadow-lg rounded-lg h-96 p-6">
+				<h4 class="border border-red-300">Upload your file!</h4>
+				<div class="border flex self-center">
+					<input type="file" name="color-file" value="">
+					<p>Does it change?</p>
+					<p>quick fix</p>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,7 @@
+{
+  "name": "project-red-rock",
+  "packageManager": "yarn@3.2.4",
+  "dependencies": {
+    "tailwindcss": "^3.2.6"
+  }
+}
