@@ -132,3 +132,6 @@ dmypy.json
 # yarn
 .yarn
 .pnp.*
+
+# image dirs
+static/uploads/*
