@@ -6,24 +6,46 @@
 		<title>Color Extractor</title>
 		<link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 	</head>
-	<body>
-		<h1 class="flex h-14 text-xl items-center justify-center text-white bg-gray-800">
-			<a href="/" class="px-8 py-4 cursor-pointer">Extract your colors</a>
-		</h1>
+	<body class="min-h-screen">
 		<div class="flex flex-col min-h-screen justify-center items-center">
-			<div class="border border-black shadow-lg rounded-lg h-96 p-6">
-				<h4 class="border border-red-300">Upload your file!</h4>
-				{% if error %}
-					<h4 class="border border-red-500 text-red-500">{{ error }}</h4>
-				{% endif %}
-				<form class="border flex self-center items-center" action="/upload" method="POST" enctype="multipart/form-data">
-					<input type="file" name="file">
+			<h1 class="flex h-14 text-xl font-semibold items-center justify-center text-white bg-gray-800 rounded-tr-lg rounded-tl-lg">
+				<a href="/" class="px-8 py-4 cursor-pointer">Extract your colors</a>
+			</h1>
+			<div class="flex flex-col items-center justify-center space-y-4 border border-black shadow-lg rounded-lg p-6">
+				<h4 class="text-xl justify-self-start">Upload an image file and extract the top 6 colors.</h4>
+				<div class="flex flex-col items-center text-md pb-4">
+					<p>Color extractor lets you extract colors from an image file.</p>
+					<p>Enabling you to grab colors from an image that inspires you.</p>
+					<p>Hex codes are produced and allows you to copy to your clipboard.</p>
+				</div>
+				<form name="file-upload" class="border border-black py-2 px-4 rounded flex self-center items-center" action="/upload" method="POST" enctype="multipart/form-data">
+					<input type="file" name="file" onchange="showFileName(this)">
 					<input
 						type="submit"
-						class="rounded-lg px-6 py-3 border hover:bg-blue-500 hover:text-white"
+						class="rounded-lg py-1 px-4 border border-gray-400 cursor-pointer hover:bg-blue-500 hover:text-white"
 						value="Upload" />
 				</form>
+				<div id="file-name">
+					{% with messages = get_flashed_messages() %}
+						{% if messages %}
+							{% for message in messages %}
+								<label for="file-upload" class="text-red-500 my-4">*{{ message }}</label>
+							{% endfor %}
+						{% endif %}
+					{% endwith %}
+				</div>
+				<p class="text-sm">*Allowed file types include: png, jpg and jpeg</p>
 			</div>
+			<footer class="mt-6">
+				<p>&copy; {{ current_year }}</p>
+			</footer>
 		</div>
 	</body>
+	<script>
+		const current_year = new Date().getFullYear();
+		document.querySelector("footer p").textContent = `Made by Theron \u00A9 ${current_year}`;
+		function showFileName(input) {
+			document.getElementById("file-name").classList.add("hidden");
+		}
+	</script>
 </html>

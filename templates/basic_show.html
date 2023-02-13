@@ -9,16 +9,60 @@
 </head>
 
 <body>
-	<h1 class="flex h-14 text-xl items-center justify-center text-white bg-gray-800">
-		<a href="/" class="px-8 py-4 cursor-pointer">Extract your colors</a>
-	</h1>
 	<div class="flex flex-col min-h-screen justify-center items-center">
-		<div class="border border-black shadow-lg rounded-lg h-96 p-6">
-			{% for color in colors %}
-				<h4 class="border border-red-300">{{ color.rgb }}</h4>
-			{% endfor %}
+		<div class="flex h-14 text-xl items-center justify-center text-white bg-gray-800 rounded-tr-lg rounded-tl-lg">
+			<p class="px-8 py-4">Colors Extracted!</p>
 		</div>
+		<div class="flex flex-col border border-black shadow-lg rounded-lg p-6 space-y-6 w-80">
+			<div class="flex justify-center">
+				<p>Click Hex code to copy to clipboard</p>
+			</div>
+			<div>
+				<ul>
+					{% for color in colors %}
+						<li class="flex space-x-6 items-center">
+							<button onclick="copyClip('{{ hex(color.rgb.r, color.rgb.g, color.rgb.b) }}')" type="button" class="text-center w-1/2">{{ hex(color.rgb.r, color.rgb.g, color.rgb.b) }}</button>
+							<div class="w-1/2 flex justify-center">
+								<span style="background-color: {{ hex(color.rgb.r, color.rgb.g, color.rgb.b) }};" class="h-10 w-28"></span>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<p id="message" class="text-center"></p>
+		</div>
+		<footer class="mt-6">
+			<p>&copy; {{ current_year }}</p>
+		</footer>
+		<a href="/" class="px-8 py-4 mt-4 cursor-pointer underline decoration-solid hover:text-blue-300 font-semibold">Go Home</a>
 	</div>
 </body>
+
+<script>
+	function setMessage(text, className = false) {
+		document.getElementById("message").innerHTML = text;
+
+		if(className) {
+			document.getElementById("message").classList.add(className);
+		}
+
+		setTimeout(function() {
+			document.getElementById("message").innerHTML = "";
+			if(className) {
+				document.getElementById("message").classList.remove(className);
+			}
+		}, 2000);
+	};
+	function copyClip(text) {
+		navigator.clipboard.writeText(text).then(() => {
+			setMessage(`${text} copied!`);
+		}).catch((err) => {
+				setMessage(`Failed to copy ${text}`, "text-red-500");
+		});
+	};
+
+	const current_year = new Date().getFullYear();
+	document.querySelector("footer p").textContent = `Made by Theron \u00A9 ${current_year}`;
+</script>
 
 </html>
