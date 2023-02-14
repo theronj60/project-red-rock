@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask, request, redirect, flash, url_for, render_template
 from werkzeug.utils import secure_filename
 import colorgram
@@ -8,8 +9,14 @@ app = Flask(__name__)
 # UPLOAD_FOLDER = './static/uploads/'
 UPLOAD_FOLDER = '/tmp/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+# need to check if dev env or production
+with open('/etc/config.json') as config_file:
+    config = json.load(config_file)
+
+app.config['SECRET_KEY'] = config.get('SECRET_KEY')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key = 'secret_key'
+app.secret_key = app.config['SECRET_KEY']
 
 # for basic color extraction, use colorgram
 # for advance usage, graphs, set number of colors, matplotlib and pandas
