@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clone git@github.com:theronj60/project-red-rock.git /home/flask_app
+# git clone git@github.com:theronj60/project-red-rock.git /home/flask_app
 
 sudo apt install nginx
 
