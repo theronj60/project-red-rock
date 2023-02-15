@@ -21,7 +21,7 @@ sudo unlink /etc/nginx/sites-enabled/default
 
 sudo nginx -s reload
 
-sudo apt update && sdudo apt upgrade
+sudo apt update && sudo apt upgrade
 
 sudo add-apt-repository ppa:deadsnakes/ppa
 
@@ -31,6 +31,18 @@ sudo apt install python3.11
 
 sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 110 &&\
 	sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 100
+
+# node and npm through nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+# restart terminal
+nvm install --lts
+
+# yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update
+sudo apt-get install yarn
+yarn --version
 
 echo "Please run sudo update-alternatives --config python3 select version"
 

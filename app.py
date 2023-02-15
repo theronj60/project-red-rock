@@ -6,17 +6,23 @@ import colorgram
 
 app = Flask(__name__)
 
+mode = os.environ.get('MODE')
+
 # UPLOAD_FOLDER = './static/uploads/'
 UPLOAD_FOLDER = '/tmp/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 # need to check if dev env or production
-with open('/etc/config.json') as config_file:
-    config = json.load(config_file)
+if mode == 'PRODUCTION':
+    with open('/etc/config.json') as config_file:
+        config = json.load(config_file)
+        app.config['SECRET_KEY'] = config.get('SECRET_KEY')
+        app.secret_key = app.config['SECRET_KEY']
+else:
+    app.config['SECRET_KEY'] = 'the652Eete'
 
-app.config['SECRET_KEY'] = config.get('SECRET_KEY')
+app.config['MAX_CONTENT_LENGTH'] = 6 * 1000 * 1000
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key = app.config['SECRET_KEY']
 
 # for basic color extraction, use colorgram
 # for advance usage, graphs, set number of colors, matplotlib and pandas

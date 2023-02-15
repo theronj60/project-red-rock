@@ -7,18 +7,20 @@
 		<link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 	</head>
 	<body class="min-h-screen">
-		<div class="flex flex-col min-h-screen justify-center items-center">
+		<div class="flex flex-col min-h-screen justify-center items-center mx-4">
 			<h1 class="flex h-14 text-xl font-semibold items-center justify-center text-white bg-gray-800 rounded-tr-lg rounded-tl-lg">
 				<a href="/" class="px-8 py-4 cursor-pointer">Extract your colors</a>
 			</h1>
-			<div class="flex flex-col items-center justify-center space-y-4 border border-black shadow-lg rounded-lg p-6">
-				<h4 class="text-xl justify-self-start">Upload an image file and extract the top 6 colors.</h4>
+			<div class="flex flex-col w-full md:w-min mx-4 items-center justify-center space-y-4 border border-black shadow-lg rounded-lg p-6">
+				<h4 class="text-xl text-center justify-self-start">
+					Upload an image file and extract the top 6 colors.
+				</h4>
 				<div class="flex flex-col items-center text-md pb-4">
-					<p>Color extractor lets you extract colors from an image file.</p>
-					<p>Enabling you to grab colors from an image that inspires you.</p>
-					<p>Hex codes are produced and allows you to copy to your clipboard.</p>
+					<p class="text-center">Color extractor lets you extract colors from an image file.</p>
+					<p class="text-center">Enabling you to grab colors from an image that inspires you.</p>
+					<p class="text-center">Hex codes are produced and allows you to copy to your clipboard.</p>
 				</div>
-				<form name="file-upload" class="border border-black py-2 px-4 rounded flex self-center items-center" action="/upload" method="POST" enctype="multipart/form-data">
+				<form name="file-upload" class="border border-black py-2 px-4 rounded flex self-center items-center sm:w-min w-full" action="/upload" method="POST" enctype="multipart/form-data">
 					<input type="file" name="file" onchange="showFileName(this)">
 					<input
 						type="submit"
