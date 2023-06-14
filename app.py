@@ -21,7 +21,7 @@ if mode == 'PRODUCTION':
 else:
     app.config['SECRET_KEY'] = 'the652Eete'
 
-app.config['MAX_CONTENT_LENGTH'] = 6 * 1000 * 1000
+app.config['MAX_CONTENT_LENGTH'] = 3 * 1000 * 1000
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # for basic color extraction, use colorgram
