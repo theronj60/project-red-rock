@@ -133,6 +133,7 @@ dmypy.json
 # yarn
 .yarn
 .pnp.*
+/node_modules
 
 # image dirs
 static/uploads/*
