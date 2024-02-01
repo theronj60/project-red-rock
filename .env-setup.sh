@@ -38,6 +38,8 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 nvm install --lts
 
 # yarn
+# is this needed anymore? I think modern yarn comes with node,
+# just need to enable something
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update
