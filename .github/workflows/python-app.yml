@@ -30,7 +30,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Compile Tailwind
       run: |
-        cd /home/flask_app
+        cd /
         yarn install
         yarn tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css
     #- name: Lint with flake8
