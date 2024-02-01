@@ -41,7 +41,7 @@
 					{% endwith %}
 				</div>
 				<p class="text-sm">*Allowed file types include: png, jpg and jpeg</p>
-				<p class="text-sm">*Max file size: 3MB</p>
+				<p class="text-sm">*<span class="underline underline-offset-2">Max file size: 3MB</span></p>
 			</div>
 			<footer class="flex flex-col mt-6 space-y-4">
 				<p>&copy; {{ current_year }}</p>
@@ -89,8 +89,8 @@
 		</div>
 	</body>
 	<script>
-		const current_year = new Date().getFullYear();
-		document.querySelector("footer p").textContent = `Made by Theron \u00A9 ${current_year}`;
+		// const current_year = new Date().getFullYear();
+		document.querySelector("footer p").textContent = `Made by Theron \u00A9 2022`;
 		function showFileName(input) {
 			document.getElementById("file-name").classList.add("hidden");
 		}
